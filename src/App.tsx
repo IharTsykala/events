@@ -19,7 +19,6 @@ const store = createStore(
 )
 
 sagaMiddleware.run(eventsSaga)
-// sagaMiddleware.run(descriptionItemSaga)
 
 const App: React.FC = () => (
   <Provider store={store}>
