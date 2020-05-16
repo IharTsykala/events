@@ -61,12 +61,6 @@ const DinamicPast: React.FunctionComponent<DinamicPastProps> = ({
     console.log(period)
   }, [listEvents, listSports, period])
 
-  const handleChangeSport = (e: any) => {
-    console.log(e.target.value)
-    dispatch(setCurrentSport(e.target.value))
-    // dispatch(getListEvents(e.target.value, +period))
-  }
-
   return (
     <div className={"dinamic-past"}>
       <Select
@@ -76,8 +70,7 @@ const DinamicPast: React.FunctionComponent<DinamicPastProps> = ({
             icon: classes.icon,
           },
         }}
-        // value={currentSport}
-        onChange={(e) => handleChangeSport(e)}
+        onChange={(e: any) => dispatch(setCurrentSport(e.target.value))}
       >
         {listSports &&
           listSports.length !== 0 &&
@@ -91,8 +84,6 @@ const DinamicPast: React.FunctionComponent<DinamicPastProps> = ({
       <Checkbox
         onChange={() => {
           dispatch(setPeriod())
-          // &&
-          // dispatch(getListEvents(currentSport, +!period))
         }}
         checked={period}
         color="primary"
@@ -100,11 +91,7 @@ const DinamicPast: React.FunctionComponent<DinamicPastProps> = ({
 
       {listEvents.length !== 0 &&
         listEvents.map((item: any, index: number) => (
-          <ListItem
-            key={item.id}
-            button
-            // className={"response__info__container__item"}
-          >
+          <ListItem key={item.id} button>
             <ListItemText
               // className={}
               primary={item.id}
