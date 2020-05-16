@@ -3,22 +3,22 @@ import { ActionTypes } from "./period.actions"
 import { Action } from "../../interfacesAction/action.interface"
 
 export interface State {
-  period: boolean,
+  period: boolean;
 }
 
 const initialState: State = {
-    period: false
+  period: false,
 }
 
 export const periodReducer = (
   state: State = initialState,
-  action: Action<number>
+  action: Action<boolean>
 ) => {
   switch (action.type) {
   case ActionTypes.SET_PERIOD:
     return {
       ...state,
-      period: !state.period
+      period: !state.period,
     }
   default:
     return state

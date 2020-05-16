@@ -10,23 +10,19 @@ export const ActionTypes = {
 }
 
 export const getListEvents = (
- numberEvent: number,
- period: number
+  numberEvent: number,
+  period: number
 ): Action<{}> => ({
   type: ActionTypes.GET_LIST_EVENTS,
-  payload: {numberEvent, period},
+  payload: { numberEvent, period },
 })
 
-export const setListEvents = (
-    listEvents: []
-): Action<[]> => ({
+export const setListEvents = (listEvents: []): Action<[]> => ({
   type: ActionTypes.SET_LIST_EVENTS,
   payload: listEvents,
 })
 
-export const setListSports = (
-    listSports: []
-): Action<[]> => ({
+export const setListSports = (listSports: []): Action<[]> => ({
   type: ActionTypes.SET_LIST_SPORTS,
   payload: listSports,
 })
