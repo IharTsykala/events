@@ -52,13 +52,14 @@ const DinamicPast: React.FunctionComponent<DinamicPastProps> = ({
   const classes = useStyles()
 
   useEffect(() => {
+    console.log(currentSport)
     dispatch(getListEvents(currentSport, +period))
   }, [currentSport, dispatch, period])
 
   useEffect(() => {
-    console.log(listEvents)
-    console.log(listSports)
-    console.log(period)
+    // console.log(listEvents)
+    // console.log(listSports)
+    // console.log(period)
   }, [listEvents, listSports, period])
 
   return (
@@ -71,6 +72,7 @@ const DinamicPast: React.FunctionComponent<DinamicPastProps> = ({
           },
         }}
         onChange={(e: any) => dispatch(setCurrentSport(e.target.value))}
+        value={currentSport || "Все виды спорта"}
       >
         {listSports &&
           listSports.length !== 0 &&
