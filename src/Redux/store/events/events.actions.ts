@@ -22,7 +22,7 @@ export const setListEvents = (listEvents: []): Action<[]> => ({
   payload: listEvents,
 })
 
-export const setListSports = (listSports: []): Action<[]> => ({
+export const setListSports = (listSports: any): Action<any> => ({
   type: ActionTypes.SET_LIST_SPORTS,
   payload: listSports,
 })

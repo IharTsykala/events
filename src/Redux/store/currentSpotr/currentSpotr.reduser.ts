@@ -3,11 +3,11 @@ import { ActionTypes } from "./currentSpotr.actions"
 import { Action } from "../../interfacesAction/action.interface"
 
 export interface State {
-  currentSport: number,
+  currentSport: number;
 }
 
 const initialState: State = {
-    currentSport: 0
+  currentSport: 0,
 }
 
 export const currentSportReducer = (
@@ -18,7 +18,7 @@ export const currentSportReducer = (
   case ActionTypes.SET_CURRENT_SPORT:
     return {
       ...state,
-      currentSport: action.payload
+      currentSport: action.payload,
     }
   default:
     return state

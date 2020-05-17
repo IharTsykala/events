@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react"
+import React, { useEffect, useRef } from "react"
 import { connect } from "react-redux"
 import { getListEvents } from "../../Redux/store/events/events.actions"
 import { setCurrentSport } from "../../Redux/store/currentSpotr/currentSpotr.actions"
@@ -6,10 +6,10 @@ import { setPeriod } from "../../Redux/store/period/period.actions"
 import {
   ListItem,
   ListItemAvatar,
-  Avatar,
+  List,
   ListItemText,
   Select,
-  FormControl,
+  Box,
   MenuItem,
   Checkbox,
 } from "@material-ui/core"
@@ -29,7 +29,7 @@ const useStyles = makeStyles((theme: Theme) =>
       },
     },
     icon: {
-      fill: "white",
+      fill: "black",
     },
   })
 )
@@ -50,67 +50,74 @@ const DinamicPast: React.FunctionComponent<DinamicPastProps> = ({
   period,
 }) => {
   const classes = useStyles()
+  // const inputEl = useRef(null)
 
   useEffect(() => {
+    console.log(currentSport)
     dispatch(getListEvents(currentSport, +period))
   }, [currentSport, dispatch, period])
 
   useEffect(() => {
-    console.log(listEvents)
-    console.log(listSports)
-    console.log(period)
+    // console.log(listEvents)
+    // console.log(listSports)
+    // console.log(period)
   }, [listEvents, listSports, period])
 
   return (
-    <div className={"dinamic-past"}>
-      <Select
-        className={`${classes.select}`}
-        inputProps={{
-          classes: {
-            icon: classes.icon,
-          },
-        }}
-        onChange={(e: any) => dispatch(setCurrentSport(e.target.value))}
-      >
-        {listSports &&
-          listSports.length !== 0 &&
-          listSports.map((item: any) => (
-            <MenuItem key={item.id} value={item.id}>
-              {item.name}
-            </MenuItem>
+    <Box component={"div"} className={"dinamic-past"}>
+      <Box component={"div"} className={"dinamic-past__header"}>
+        <Select
+          className={`${classes.select}`}
+          inputProps={{
+            classes: {
+              icon: classes.icon,
+            },
+          }}
+          onChange={(e: any) => dispatch(setCurrentSport(e.target.value))}
+          value={currentSport}
+        >
+          {listSports &&
+            listSports.length !== 0 &&
+            listSports.map((item: any) => (
+              <MenuItem key={item.id} value={item.id}>
+                {item.name}
+              </MenuItem>
+            ))}
+        </Select>
+
+        <Checkbox
+          onChange={() => {
+            dispatch(setPeriod())
+          }}
+          checked={period}
+          color="primary"
+        />
+      </Box>
+
+      <List className={"list_request__container__list"}>
+        {listEvents.length !== 0 &&
+          listEvents.map((item: any, index: number) => (
+            <ListItem key={item.id} button>
+              <ListItemText
+                // className={}
+                primary={item.id}
+              />
+              <ListItemText
+                // className={}
+                primary={`${item.sportName} ${item.leagueName}`}
+              />
+              <ListItemText
+                // className={}
+                primary={`${item.team1} - ${item.team2}`}
+              />
+              <ListItemText
+                // className={}
+                primary={`${item.date}`}
+              />
+            </ListItem>
           ))}
-      </Select>
-
-      <Checkbox
-        onChange={() => {
-          dispatch(setPeriod())
-        }}
-        checked={period}
-        color="primary"
-      />
-
-      {listEvents.length !== 0 &&
-        listEvents.map((item: any, index: number) => (
-          <ListItem key={item.id} button>
-            <ListItemText
-              // className={}
-              primary={item.id}
-            />
-            <ListItemText
-              // className={}
-              primary={`${item.sportName} ${item.leagueName}`}
-            />
-            <ListItemText
-              // className={}
-              primary={`${item.team1} - ${item.team2}`}
-            />
-            <ListItemText
-              // className={}
-              primary={`${item.date}`}
-            />
-          </ListItem>
-        ))}
-    </div>
+      </List>
+    </Box>
   )
 }
 
