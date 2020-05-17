@@ -5,5 +5,15 @@
 
 .dinamic-past {
   background-color: beige;
+  display: grid;
+  grid-template-rows: 5vw 1fr;
 }
+
+.dinamic-past__header {
+  display: grid;
+  grid-template-columns: 20% 10%;
+  gap: 70%;
+}
+
+
 
