@@ -9,7 +9,7 @@ import {
   Avatar,
   ListItemText,
   Select,
-  FormControl,
+  Box,
   MenuItem,
   Checkbox,
 } from "@material-ui/core"
@@ -29,7 +29,7 @@ const useStyles = makeStyles((theme: Theme) =>
       },
     },
     icon: {
-      fill: "white",
+      fill: "black",
     },
   })
 )
@@ -63,7 +63,7 @@ const DinamicPast: React.FunctionComponent<DinamicPastProps> = ({
   }, [listEvents, listSports, period])
 
   return (
-    <div className={"dinamic-past"}>
+    <Box component={"div"} className={"dinamic-past"}>
       <Select
         className={`${classes.select}`}
         inputProps={{
@@ -72,7 +72,7 @@ const DinamicPast: React.FunctionComponent<DinamicPastProps> = ({
           },
         }}
         onChange={(e: any) => dispatch(setCurrentSport(e.target.value))}
-        value={currentSport || "Все виды спорта"}
+        value={currentSport}
       >
         {listSports &&
           listSports.length !== 0 &&
@@ -112,7 +112,7 @@ const DinamicPast: React.FunctionComponent<DinamicPastProps> = ({
             />
           </ListItem>
         ))}
-    </div>
+    </Box>
   )
 }
 
