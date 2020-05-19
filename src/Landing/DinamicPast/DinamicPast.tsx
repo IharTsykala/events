@@ -65,9 +65,9 @@ const DinamicPast: React.FunctionComponent<DinamicPastProps> = ({
 
   return (
     <Box component={"div"} className={"dinamic-past"}>
-      <Box component={"div"} className={"dinamic-past__header"}>
+      <Box component={"div"} className={"select-block"}>
         <Select
-          className={`${classes.select}`}
+          className={`select ${classes.select}`}
           inputProps={{
             classes: {
               icon: classes.icon,
@@ -86,6 +86,7 @@ const DinamicPast: React.FunctionComponent<DinamicPastProps> = ({
         </Select>
 
         <Checkbox
+          className={"check-box"}
           onChange={() => {
             dispatch(setPeriod())
           }}
@@ -94,7 +95,7 @@ const DinamicPast: React.FunctionComponent<DinamicPastProps> = ({
         />
       </Box>
 
-      <List className={"list_request__container__list"}>
+      <List className={"list-response"}>
         {listEvents.length !== 0 &&
           listEvents.map((item: any, index: number) => (
             <ListItem key={item.id} button>
