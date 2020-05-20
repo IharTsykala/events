@@ -64,8 +64,13 @@ const DinamicPast: React.FunctionComponent<DinamicPastProps> = ({
   }, [listEvents, listSports, period])
 
   return (
+<<<<<<< HEAD
     <Box component={"div"} className={"dinamic-past"}>
       <Box component={"div"} className={"select-block"}>
+=======
+    <Box component={"div"} className={"dinamic-past-container"}>
+      <Box component={"div"} className={"dinamic-past-container__select-block"}>
+>>>>>>> cf96e84a30a79a32a1bd3ac7cb637c5b6f154c4b
         <Select
           className={`select ${classes.select}`}
           inputProps={{
