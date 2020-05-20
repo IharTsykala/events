@@ -100,19 +100,27 @@ const DinamicPast: React.FunctionComponent<DinamicPastProps> = ({
           listEvents.map((item: any, index: number) => (
             <ListItem key={item.id} button className={"response-list__item"}>
               <ListItemText
-                className={"response-list__item-text"}
+                className={
+                  "response-list__item-text response-list__item-text_first"
+                }
                 primary={item.id}
               />
               <ListItemText
-                className={"response-list__item-text"}
+                className={
+                  "response-list__item-text response-list__item-text_second"
+                }
                 primary={`${item.sportName} ${item.leagueName}`}
               />
               <ListItemText
-                className={"response-list__item-text"}
+                className={
+                  "response-list__item-text response-list__item-text_third"
+                }
                 primary={`${item.team1} - ${item.team2}`}
               />
               <ListItemText
-                className={"response-list__item-text"}
+                className={
+                  "response-list__item-text response-list__item-text_fourth"
+                }
                 primary={`${item.date}`}
               />
             </ListItem>
