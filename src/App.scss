@@ -3,17 +3,22 @@
   grid-template-rows: 30vw 1fr;
 }
 
-.dinamic-past {
+.dinamic-container {
   background-color: beige;
   display: grid;
   grid-template-rows: 5vw 1fr;
 }
 
-.dinamic-past__header {
+.request-block {
   display: grid;
   grid-template-columns: 20% 10%;
   gap: 70%;
 }
 
+.response-list__item-text span {
+  font-size: 14px !important;
+  display: grid!important;
+  justify-self: start !important;
+}
 
 
