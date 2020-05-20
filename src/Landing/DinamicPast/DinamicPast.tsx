@@ -64,15 +64,10 @@ const DinamicPast: React.FunctionComponent<DinamicPastProps> = ({
   }, [listEvents, listSports, period])
 
   return (
-<<<<<<< HEAD
-    <Box component={"div"} className={"dinamic-past"}>
-      <Box component={"div"} className={"select-block"}>
-=======
-    <Box component={"div"} className={"dinamic-past-container"}>
-      <Box component={"div"} className={"dinamic-past-container__select-block"}>
->>>>>>> cf96e84a30a79a32a1bd3ac7cb637c5b6f154c4b
+    <Box component={"div"} className={"dinamic-container"}>
+      <Box component={"div"} className={"request-block"}>
         <Select
-          className={`select ${classes.select}`}
+          className={`request-block__select ${classes.select}`}
           inputProps={{
             classes: {
               icon: classes.icon,
@@ -91,7 +86,7 @@ const DinamicPast: React.FunctionComponent<DinamicPastProps> = ({
         </Select>
 
         <Checkbox
-          className={"check-box"}
+          className={"request-block__check-box"}
           onChange={() => {
             dispatch(setPeriod())
           }}
@@ -100,24 +95,24 @@ const DinamicPast: React.FunctionComponent<DinamicPastProps> = ({
         />
       </Box>
 
-      <List className={"list-response"}>
+      <List className={"response-list"}>
         {listEvents.length !== 0 &&
           listEvents.map((item: any, index: number) => (
-            <ListItem key={item.id} button>
+            <ListItem key={item.id} button className={"response-list__item"}>
               <ListItemText
-                // className={}
+                className={"response-list__item-text"}
                 primary={item.id}
               />
               <ListItemText
-                // className={}
+                className={"response-list__item-text"}
                 primary={`${item.sportName} ${item.leagueName}`}
               />
               <ListItemText
-                // className={}
+                className={"response-list__item-text"}
                 primary={`${item.team1} - ${item.team2}`}
               />
               <ListItemText
-                // className={}
+                className={"response-list__item-text"}
                 primary={`${item.date}`}
               />
             </ListItem>
