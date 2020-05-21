@@ -1,8 +1,9 @@
 import React, { useEffect, useRef } from "react"
 import { connect } from "react-redux"
-import { getListEvents } from "../../Redux/store/events/events.actions"
+// import { getListEvents } from "../../Redux/store/events/events.actions"
 import { setCurrentSport } from "../../Redux/store/currentSpotr/currentSpotr.actions"
 import { setPeriod } from "../../Redux/store/period/period.actions"
+import { getListEvents } from "../../Redux/store/events/events.thunk"
 import {
   ListItem,
   ListItemAvatar,
@@ -35,27 +36,33 @@ const useStyles = makeStyles((theme: Theme) =>
 )
 
 type DinamicPastProps = {
-  dispatch: any,
+  // dispatch: any,
   listEvents: [],
   listSports: [],
   currentSport: number,
   period: boolean,
+  getListEvents: any,
+  setPeriod: any,
+  setCurrentSport: any,
 }
 
 const DinamicPast: React.FunctionComponent<DinamicPastProps> = ({
-  dispatch,
+  // dispatch,
   listEvents,
   listSports,
   currentSport,
   period,
+  getListEvents,
+  setPeriod,
+  setCurrentSport,
 }) => {
   const classes = useStyles()
   // const inputEl = useRef(null)
 
   useEffect(() => {
-    console.log(currentSport)
-    dispatch(getListEvents(currentSport, +period))
-  }, [currentSport, dispatch, period])
+    // console.log(currentSport)
+    getListEvents(currentSport, +period)
+  }, [currentSport, getListEvents, period])
 
   useEffect(() => {
     // console.log(listEvents)
@@ -73,7 +80,7 @@ const DinamicPast: React.FunctionComponent<DinamicPastProps> = ({
               icon: classes.icon,
             },
           }}
-          onChange={(e: any) => dispatch(setCurrentSport(e.target.value))}
+          onChange={(e: any) => setCurrentSport(e.target.value)}
           value={currentSport}
         >
           {listSports &&
@@ -87,9 +94,7 @@ const DinamicPast: React.FunctionComponent<DinamicPastProps> = ({
 
         <Checkbox
           className={"request-block__check-box"}
-          onChange={() => {
-            dispatch(setPeriod())
-          }}
+          onChange={() => setPeriod()}
           checked={period}
           color="primary"
         />
@@ -137,4 +142,16 @@ const mapStateToProps = (state: any) => ({
   period: state.period.period,
 })
 
-export default connect(mapStateToProps)(DinamicPast)
+// const mapDispatchToProps = (dispatch: any) => {
+//   return {
+//     getListEvents: (currentSport: number, period: any) =>
+//       dispatch(getListEvents(currentSport, period)),
+//     dispatch,
+//   }
+// }
+
+export default connect(mapStateToProps, {
+  getListEvents,
+  setCurrentSport,
+  setPeriod,
+})(DinamicPast)

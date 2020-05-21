@@ -21,7 +21,7 @@ function* setListEventsSaga(actions: any) {
     const newArrSport = [{ id: 0, name: "Все виды спорта" }].concat(
       listEvents.sports
     )
-    console.log(newArrSport)
+    // console.log(newArrSport)
     yield put(setListSports(newArrSport))
   } catch (e) {
     // these will error (loading)
