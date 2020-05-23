@@ -133,7 +133,7 @@ const DinamicPast: React.FunctionComponent<DinamicPastProps> = ({
       </List>
     </Box>
   )
-}git
+}
 
 const mapStateToProps = (state: any) => ({
   listEvents: state.listEvents.listEvents,
