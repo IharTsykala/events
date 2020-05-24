@@ -142,13 +142,13 @@ const mapStateToProps = (state: any) => ({
   period: state.period.period,
 })
 
-// const mapDispatchToProps = (dispatch: any) => {
-//   return {
-//     getListEvents: (currentSport: number, period: any) =>
-//       dispatch(getListEvents(currentSport, period)),
-//     dispatch,
-//   }
-// }
+const mapDispatchToProps = (dispatch: any) => {
+  return {
+    getListEvents: (currentSport: number, period: any) =>
+      dispatch(getListEvents(currentSport, period)),
+    dispatch,
+  }
+}
 
 export default connect(mapStateToProps, {
   getListEvents,
