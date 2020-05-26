@@ -46,7 +46,7 @@ type DinamicPastProps = {
   // getListEvents: any,
   // setPeriod: any,
   // setCurrentSport: any,
-  store: any,
+  example?: any,
 }
 
 const DinamicPast: React.FunctionComponent<DinamicPastProps> = ({
@@ -58,7 +58,7 @@ const DinamicPast: React.FunctionComponent<DinamicPastProps> = ({
   // getListEvents,
   // setPeriod,
   // setCurrentSport,
-  store,
+  example,
 }) => {
   const classes = useStyles()
   // const inputEl = useRef(null)
@@ -76,7 +76,7 @@ const DinamicPast: React.FunctionComponent<DinamicPastProps> = ({
 
   return (
     <Box component={"div"} className={"dinamic-container"}>
-      <div>{store.example}</div>
+      <div>{example}</div>
       <Box component={"div"} className={"request-block"}>
         <Select
           className={`request-block__select ${classes.select}`}
@@ -161,4 +161,6 @@ const mapDispatchToProps = (dispatch: any) => {
 //   setPeriod,
 // })(DinamicPast)
 
-export default inject("store")(observer(DinamicPast))
+export default inject((stores: any) => ({
+  example: stores.store,
+}))(observer(DinamicPast))

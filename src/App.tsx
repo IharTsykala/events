@@ -21,14 +21,14 @@ import { observer, Provider } from "mobx-react"
 //   )
 // )
 
-const store2 = observable({
+const store = observable({
   example: 0,
 })
 
 // sagaMiddleware.run(eventsSaga)
 
 const App: React.FC = () => (
-  <Provider store={store2}>
+  <Provider store={store.example}>
     <div className={"wrapper"}>
       <StaticItem />
       <DinamicItem />
