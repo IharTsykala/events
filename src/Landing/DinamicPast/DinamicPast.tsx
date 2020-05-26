@@ -4,6 +4,8 @@ import { connect } from "react-redux"
 import { setCurrentSport } from "../../Redux/store/currentSpotr/currentSpotr.actions"
 import { setPeriod } from "../../Redux/store/period/period.actions"
 import { getListEvents } from "../../Redux/store/events/events.thunk"
+import { observer, inject } from "mobx-react"
+import { observable } from "mobx"
 import {
   ListItem,
   ListItemAvatar,
@@ -37,41 +39,44 @@ const useStyles = makeStyles((theme: Theme) =>
 
 type DinamicPastProps = {
   // dispatch: any,
-  listEvents: [],
-  listSports: [],
-  currentSport: number,
-  period: boolean,
-  getListEvents: any,
-  setPeriod: any,
-  setCurrentSport: any,
+  // listEvents: [],
+  // listSports: [],
+  // currentSport: number,
+  // period: boolean,
+  // getListEvents: any,
+  // setPeriod: any,
+  // setCurrentSport: any,
+  store: any,
 }
 
 const DinamicPast: React.FunctionComponent<DinamicPastProps> = ({
   // dispatch,
-  listEvents,
-  listSports,
-  currentSport,
-  period,
-  getListEvents,
-  setPeriod,
-  setCurrentSport,
+  // listEvents,
+  // listSports,
+  // currentSport,
+  // period,
+  // getListEvents,
+  // setPeriod,
+  // setCurrentSport,
+  store,
 }) => {
   const classes = useStyles()
   // const inputEl = useRef(null)
 
   useEffect(() => {
     // console.log(currentSport)
-    getListEvents(currentSport, +period)
-  }, [currentSport, getListEvents, period])
+    // getListEvents(currentSport, +period)
+  }, [])
 
   useEffect(() => {
     // console.log(listEvents)
     // console.log(listSports)
     // console.log(period)
-  }, [listEvents, listSports, period])
+  }, [])
 
   return (
     <Box component={"div"} className={"dinamic-container"}>
+      <div>{store.example}</div>
       <Box component={"div"} className={"request-block"}>
         <Select
           className={`request-block__select ${classes.select}`}
@@ -80,56 +85,56 @@ const DinamicPast: React.FunctionComponent<DinamicPastProps> = ({
               icon: classes.icon,
             },
           }}
-          onChange={(e: any) => setCurrentSport(e.target.value)}
-          value={currentSport}
+          // onChange={(e: any) => setCurrentSport(e.target.value)}
+          // value={currentSport}
         >
-          {listSports &&
-            listSports.length !== 0 &&
-            listSports.map((item: any) => (
-              <MenuItem key={item.id} value={item.id}>
-                {item.name}
-              </MenuItem>
-            ))}
+          {/*{listSports &&*/}
+          {/*  listSports.length !== 0 &&*/}
+          {/*  listSports.map((item: any) => (*/}
+          {/*    <MenuItem key={item.id} value={item.id}>*/}
+          {/*      {item.name}*/}
+          {/*    </MenuItem>*/}
+          {/*  ))}*/}
         </Select>
 
         <Checkbox
           className={"request-block__check-box"}
-          onChange={() => setPeriod()}
-          checked={period}
+          // onChange={() => setPeriod()}
+          // checked={period}
           color="primary"
         />
       </Box>
 
       <List className={"response-list"}>
-        {listEvents.length !== 0 &&
-          listEvents.map((item: any, index: number) => (
-            <ListItem key={item.id} button className={"response-list__item"}>
-              <ListItemText
-                className={
-                  "response-list__item-text response-list__item-text_first"
-                }
-                primary={item.id}
-              />
-              <ListItemText
-                className={
-                  "response-list__item-text response-list__item-text_second"
-                }
-                primary={`${item.sportName} ${item.leagueName}`}
-              />
-              <ListItemText
-                className={
-                  "response-list__item-text response-list__item-text_third"
-                }
-                primary={`${item.team1} - ${item.team2}`}
-              />
-              <ListItemText
-                className={
-                  "response-list__item-text response-list__item-text_fourth"
-                }
-                primary={`${item.date}`}
-              />
-            </ListItem>
-          ))}
+        {/*{listEvents.length !== 0 &&*/}
+        {/*  listEvents.map((item: any, index: number) => (*/}
+        {/*    <ListItem key={item.id} button className={"response-list__item"}>*/}
+        {/*      <ListItemText*/}
+        {/*        className={*/}
+        {/*          "response-list__item-text response-list__item-text_first"*/}
+        {/*        }*/}
+        {/*        primary={item.id}*/}
+        {/*      />*/}
+        {/*      <ListItemText*/}
+        {/*        className={*/}
+        {/*          "response-list__item-text response-list__item-text_second"*/}
+        {/*        }*/}
+        {/*        primary={`${item.sportName} ${item.leagueName}`}*/}
+        {/*      />*/}
+        {/*      <ListItemText*/}
+        {/*        className={*/}
+        {/*          "response-list__item-text response-list__item-text_third"*/}
+        {/*        }*/}
+        {/*        primary={`${item.team1} - ${item.team2}`}*/}
+        {/*      />*/}
+        {/*      <ListItemText*/}
+        {/*        className={*/}
+        {/*          "response-list__item-text response-list__item-text_fourth"*/}
+        {/*        }*/}
+        {/*        primary={`${item.date}`}*/}
+        {/*      />*/}
+        {/*    </ListItem>*/}
+        {/*  ))}*/}
       </List>
     </Box>
   )
@@ -150,8 +155,10 @@ const mapDispatchToProps = (dispatch: any) => {
   }
 }
 
-export default connect(mapStateToProps, {
-  getListEvents,
-  setCurrentSport,
-  setPeriod,
-})(DinamicPast)
+// export default connect (mapStateToProps, {
+//   getListEvents,
+//   setCurrentSport,
+//   setPeriod,
+// })(DinamicPast)
+
+export default inject("store")(observer(DinamicPast))
